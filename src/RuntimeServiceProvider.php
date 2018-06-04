@@ -88,7 +88,7 @@ class RuntimeServiceProvider extends ServiceProvider
         }
 
         if ( ! $has_default_logger) {
-            $serviceContainer->setLogger('defaultLogger', \Log::getMonolog());
+            $serviceContainer->setLogger('defaultLogger', $this->app['log']);
         }
 
         Propel::setServiceContainer($serviceContainer);
