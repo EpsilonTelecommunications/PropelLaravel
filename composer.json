@@ -1,7 +1,7 @@
 {
     "name": "propel/propel-laravel",
     "description": "Propel integration for Laravel framework.",
-    "keywords": ["laravel", "laravel5", "propel", "propel2", "orm", "activerecord", "Active Record"],
+    "keywords": ["laravel", "laravel6", "propel", "propel2", "orm", "activerecord", "Active Record"],
     "type": "library",
     "license": "MIT",
     "authors": [
