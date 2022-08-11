@@ -20,8 +20,8 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "^8.0|^7.0|^6.0|5.*",
-        "propel/propel": "^2.0"
+        "laravel/framework": "^9.0|^8.0|^7.0|^6.0|5.*",
+        "propel/propel": "dev-master"
     },
     "autoload": {
         "psr-4": {

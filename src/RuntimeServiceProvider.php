@@ -61,7 +61,7 @@ class RuntimeServiceProvider extends ServiceProvider
         /** @var $serviceContainer \Propel\Runtime\ServiceContainer\StandardServiceContainer */
         $serviceContainer = Propel::getServiceContainer();
         $serviceContainer->closeConnections();
-        $serviceContainer->checkVersion('2.0.0-dev');
+        $serviceContainer->checkVersion(2);
 
         $runtime_conf = $propel_conf['runtime'];
 
@@ -70,10 +70,10 @@ class RuntimeServiceProvider extends ServiceProvider
             $config = $propel_conf['database']['connections'][$connection_name];
 
             $serviceContainer->setAdapterClass($connection_name, $config['adapter']);
-            $manager = new ConnectionManagerSingle();
+            $manager = new ConnectionManagerSingle($connection_name);
             $manager->setConfiguration($config + [$propel_conf['paths']]);
             $manager->setName($connection_name);
-            $serviceContainer->setConnectionManager($connection_name, $manager);
+            $serviceContainer->setConnectionManager($manager);
         }
 
         $serviceContainer->setDefaultDatasource($runtime_conf['defaultConnection']);
