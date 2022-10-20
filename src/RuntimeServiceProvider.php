@@ -18,6 +18,7 @@ use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
 use Propel\Runtime\Propel;
 use Symfony\Component\Console\Input\ArgvInput;
+use Psr\Log\NullLogger;
 
 class RuntimeServiceProvider extends ServiceProvider
 {
@@ -88,7 +89,7 @@ class RuntimeServiceProvider extends ServiceProvider
         }
 
         if ( ! $has_default_logger) {
-            $serviceContainer->setLogger('defaultLogger', $this->app['log']);
+            $serviceContainer->setLogger('defaultLogger', new NullLogger);
         }
 
         Propel::setServiceContainer($serviceContainer);
