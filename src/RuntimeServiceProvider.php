@@ -18,6 +18,7 @@ use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
 use Propel\Runtime\Propel;
 use Symfony\Component\Console\Input\ArgvInput;
+use Psr\Log\NullLogger;
 
 class RuntimeServiceProvider extends ServiceProvider
 {
@@ -79,17 +80,17 @@ class RuntimeServiceProvider extends ServiceProvider
         $serviceContainer->setDefaultDatasource($runtime_conf['defaultConnection']);
 
         // set loggers
-//         $has_default_logger = false;
-//         if ( isset($runtime_conf['log']) ) {
-//             $has_default_logger = array_key_exists('defaultLogger', $runtime_conf['log']);
-//             foreach ($runtime_conf['log'] as $logger_name => $logger_conf) {
-//                 $serviceContainer->setLoggerConfiguration($logger_name, $logger_conf);
-//             }
-//         }
+        $has_default_logger = false;
+        if ( isset($runtime_conf['log']) ) {
+            $has_default_logger = array_key_exists('defaultLogger', $runtime_conf['log']);
+            foreach ($runtime_conf['log'] as $logger_name => $logger_conf) {
+                $serviceContainer->setLoggerConfiguration($logger_name, $logger_conf);
+            }
+        }
 
-//         if ( ! $has_default_logger) {
-//             $serviceContainer->setLogger('defaultLogger', $this->app['log']);
-//         }
+        if ( ! $has_default_logger) {
+            $serviceContainer->setLogger('defaultLogger', new NullLogger);
+        }
 
         Propel::setServiceContainer($serviceContainer);
     }
