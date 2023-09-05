@@ -89,7 +89,7 @@ class RuntimeServiceProvider extends ServiceProvider
 
         if ( ! $has_default_logger) {
 //            $serviceContainer->setLogger('defaultLogger', $this->app['log']);
-            $serviceContainer->setLogger('defaultLogger', \Psr\Log\NullLogger::class);
+            $serviceContainer->setLogger('defaultLogger', $this->app[\Psr\Log\NullLogger::class]);
         }
 
         Propel::setServiceContainer($serviceContainer);
