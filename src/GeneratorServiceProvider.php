@@ -32,7 +32,10 @@ class GeneratorServiceProvider extends ServiceProvider
     public function register()
     {
         $finder = new Finder();
-        $finder->files()->name('*.php')->in(__DIR__.'/../../../propel/propel/src/Propel/Generator/Command')->depth(0);
+
+        $dir = $this->app->basePath('vendor/propel/propel/src/Propel/Generator/Command');
+
+        $finder->files()->name('*.php')->in($dir)->depth(0);
 
         $commands = [];
         foreach ($finder as $file) {
